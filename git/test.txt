@@ -1,0 +1,44 @@
+1，在所在目录创建版本库 git init
+2，添加修改 git add "file name"  一次添加所有修改  git add -A 
+3，提交修改 git commit -m "comment"
+4，查看当前版本库状态  git status
+5，查看某个文件做了哪些修改 git diff+文件名
+6，查看版本库历史信息 git log
+7，head表示当前版本，head^表示上一个版本，head^^表示上两个版本，head^100表示上100个版本
+8，版本变换:git reset --hard+版本id前几位
+9，用git log可以查看提交历史，以便确定要回退到哪个版本
+10，用git reflog查看命令历史，以便确定要回到未来的哪个版本
+11，撤消修改 
+11.1 若进行了普通修改，运行git checkout -- +文件名 ，则回到修改前的状态
+11.2 若运行了git add 之后又进行了修改，则使用11.1中的命令之后，回到git add 之后的状态
+11.3 若运行了git add 之后要撤消该次add的内容，则先运行git reset HEAD  +文件名，再运行11.1中命令。
+12，在手动删除文件之后，如果确实要从版本库中删除该文件，运行git rm +文件名，如果要从版本库中恢复该文件，运行git checkout -- +文件名
+13，远程分支处理
+13.1 从远程仓库克隆 git clone git@github.com:username/name.git     
+13.2 查看远程库信息 git remote -v
+13.3 推送分支 git push origin master
+14，分支处理
+14.1 查看分支：git branch
+14.2 创建分支：git branch <name>
+14.3 切换分支：git checkout <name>
+14.4 创建+切换分支：git checkout -b <name>
+14.5 合并某分支到当前分支：git merge <name>
+14.6 删除分支：git branch -d <name>
+14.7 用git log --graph命令可以看到分支合并图
+15，用git stash保存现场，git stash apply恢复现场(不删除现场)，git stash pop，恢复的同时把stash内容也删了
+16，如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除
+17，多人协作
+因此，多人协作的工作模式通常是这样：
+首先，可以试图用git push origin branch-name推送自己的修改；
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+如果合并有冲突，则解决冲突，并在本地提交；
+没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+18，标签管理
+18.1 创建标签 git tag v1.0
+18.2 查看所有标签 git tag
+18.3 在相应版本上打标签 git tag v0.9 6224937
+18.4 查看标签信息 git show <tagname>
+18.5 删除标签 git tag -d v0.1
+18.6 一次性推送全部尚未推送到远程的本地标签：git push origin --tags    单独一个标签 git push origin v1.0
+18.7 如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：git tag -d v0.9 然后，从远程删除，git push origin :refs/tags/v0.9
