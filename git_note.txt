@@ -3,5 +3,5 @@
 1，切换到待同步目录，运行"git init"
 2，运行"git add ." ，将所有文件添加为待修改
 3，运行"git commit -m 'first add' " 将修改提交
-4，运行"git remote add origin git@https://github.com:peng312388041/test.git"
+4，运行"git remote add origin https://github.com/peng312388041/test.git"
 5，运行"git push -u origin master"
