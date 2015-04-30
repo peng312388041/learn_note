@@ -1,0 +1,38 @@
+一，双重锁机制
+public class SingletonClass { 
+
+  private volatile static SingletonClass instance = null; 
+
+  public static SingletonClass getInstance() { 
+    if (instance == null) { 
+      synchronized (SingletonClass.class) { 
+        if(instance == null) { 
+          instance = new SingletonClass(); 
+        } 
+      } 
+    } 
+    return instance; 
+  } 
+
+  private SingletonClass() { 
+
+  } 
+    
+}
+
+二，静态内部类
+public class SingletonClass { 
+    
+  private static class SingletonClassInstance { 
+    private static final SingletonClass instance = new SingletonClass(); 
+  } 
+
+  public static SingletonClass getInstance() { 
+    return SingletonClassInstance.instance; 
+  } 
+
+  private SingletonClass() { 
+
+  } 
+    
+}

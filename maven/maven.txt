@@ -1,0 +1,32 @@
+1,解决maven   Run on Server时lib找不到的问题
+
+右击project->properties->deployment assembly->add->java build path entries->maven...
+
+2,解决java默认版本及源码和文档下载
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	
+	命令方式：
+	1. 使用maven命令：mvn dependency:sources 下载依赖包的源代码。 
+	2. 使用参数： -DdownloadSources=true 下载源代码jar。 -DdownloadJavadocs=true 下载javadoc包。
