@@ -11,7 +11,7 @@
     d:\data.dbf'：表空间的存储位置
     xxx表空间的大小，m单位为兆(M)
 3.将空间分配给用户：
-   alert user username default tablespace tablespacename;
+   alter user username default tablespace tablespacename;
    将名字为tablespacename的表空间分配给username 
 
 4.给用户授权：
